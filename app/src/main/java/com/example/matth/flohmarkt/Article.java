@@ -3,11 +3,12 @@ package com.example.matth.flohmarkt;
 import java.util.Date;
 
 public class Article {
-    int id,phone,price;
+    int id,price;
     String name,email,username;
     Date created;
+    String phone;
     boolean y;
-    public Article(int id,int price, String name, String email, String username, int phone){
+    public Article(int id,int price, String name, String email, String username, String phone){
         this.id=id;
         this.price=price;
         this.name=name;
