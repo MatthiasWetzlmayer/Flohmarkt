@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="-"
+        android:key="uname"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Noch nicht gesetzt"
+        android:title="Username" />
+    <EditTextPreference
+        android:defaultValue="-"
+        android:inputType="textPassword"
+        android:key="psw"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Noch nicht gesetzt"
+        android:title="Password" />
+</PreferenceScreen>
