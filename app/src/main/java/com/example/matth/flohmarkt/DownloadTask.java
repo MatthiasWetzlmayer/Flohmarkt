@@ -39,7 +39,7 @@ public class DownloadTask extends AsyncTask<ArrayList<Article>, Integer, ArrayLi
             for(int i=0;i<arr.length();i++){
                 try {
                     j = arr.getJSONObject(i);
-                    Article a = new Article(j.getInt("id"), j.getInt("price"), j.getString("name"), j.getString("email"), j.getString("username"), j.getString("phone"));
+                    Article a = new Article(j.getInt("id"), j.getInt("price"), j.getString("name"), j.getString("email"), j.getString("username"), j.getString("phone"),j.getDouble("lat"),j.getDouble("lon"));
                     a.setCreated(MainActivity.sdf.parse(j.getString("created")));
                     articles.add(a);
                 }catch (JSONException ex){

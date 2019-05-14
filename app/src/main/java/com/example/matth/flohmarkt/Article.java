@@ -8,7 +8,8 @@ public class Article {
     Date created;
     String phone;
     boolean y;
-    public Article(int id,int price, String name, String email, String username, String phone){
+    double lat,lon;
+    public Article(int id,int price, String name, String email, String username, String phone,double lat,double lon){
         this.id=id;
         this.price=price;
         this.name=name;
@@ -17,6 +18,8 @@ public class Article {
         this.phone=phone;
         created=new Date();
         y=false;
+        this.lat=lat;
+        this.lon=lon;
     }
 
     public void setCreated(Date created) {

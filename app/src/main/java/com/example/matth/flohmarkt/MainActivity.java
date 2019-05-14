@@ -54,6 +54,7 @@ static final SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         lv.setAdapter(aa);
         y.setAdapter(aYours);
         prefs=PreferenceManager.getDefaultSharedPreferences(this);
+
         update();
 
        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -106,7 +107,7 @@ static final SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                         EditText email=v.findViewById(R.id.add_Email);
                         EditText tel=v.findViewById(R.id.add_Tel);
 
-                        Article a=new Article(0,Integer.parseInt(price.getText().toString()),name.getText().toString(),email.getText().toString(),prefs.getString("uname",""),tel.getText().toString());
+                        Article a=new Article(0,Integer.parseInt(price.getText().toString()),name.getText().toString(),email.getText().toString(),prefs.getString("uname",""),tel.getText().toString(),0.0,0.0);
                         UploadTask task=new UploadTask();
                         task.execute(a);
                     }
