@@ -33,6 +33,11 @@ public class MasterFragment extends Fragment {
 
         return v;
     }
+
+    public void onUpdateFinished() {
+        aa.notifyDataSetChanged();
+    }
+
     public interface MasterClicked{
         public void onMasterClicked(Article a);
     }
@@ -57,7 +62,8 @@ public class MasterFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
+        MainActivity ma= (MainActivity) getActivity();
+        ma.onMasterChanged();
         if(MainActivity.articles==null){
             MainActivity.articles=new ArrayList<>();
             aa=new ArticleAdapter(getActivity(),MainActivity.articles);

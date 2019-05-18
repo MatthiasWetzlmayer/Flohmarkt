@@ -14,9 +14,9 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-public class DownloadTask extends AsyncTask<Object, Integer, ArticleAdapter> {
+public class DownloadTask extends AsyncTask<Object, Integer, MainActivity> {
     @Override
-    protected ArticleAdapter doInBackground(Object... arrayLists) {
+    protected MainActivity doInBackground(Object... arrayLists) {
         ArticleAdapter aa=(ArticleAdapter) arrayLists[0];
         MainActivity ma= (MainActivity) arrayLists[1];
         ArrayList<Article> articles=aa.getList();
@@ -42,11 +42,15 @@ public class DownloadTask extends AsyncTask<Object, Integer, ArticleAdapter> {
                     j = arr.getJSONObject(i);
                     Article a = new Article(j.getInt("id"), j.getInt("price"), j.getString("name"), j.getString("email"), j.getString("username"), j.getString("phone"),j.getDouble("lat"),j.getDouble("lon"));
                     a.setCreated(MainActivity.sdf.parse(j.getString("created")));
+                    if(a.username.equals(MainActivity.prefs.getString("uname",""))){
+                        a.y=true;
+                    }
                     articles.add(a);
                 }catch (JSONException ex){
                     ex.printStackTrace();
                 }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -57,13 +61,14 @@ public class DownloadTask extends AsyncTask<Object, Integer, ArticleAdapter> {
 
 
 
-        return aa;
+        return ma;
     }
 
     @Override
-    protected void onPostExecute(ArticleAdapter aa) {
-        super.onPostExecute(aa);
-        aa.notifyDataSetChanged();
+    protected void onPostExecute(MainActivity ma) {
+        super.onPostExecute(ma);
+        ma.onUpdateFinished();
+
 
     }
 }

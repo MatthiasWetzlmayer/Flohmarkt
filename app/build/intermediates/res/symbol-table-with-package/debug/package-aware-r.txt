@@ -743,6 +743,7 @@ id META
 id RF_lv
 id SHIFT
 id SYM
+id ac_detail
 id action0
 id action_bar
 id action_bar_activity_content
@@ -849,7 +850,7 @@ id percent
 id progress_circular
 id progress_horizontal
 id radio
-id recoments
+id recoment
 id recycler_view
 id right
 id right_icon
@@ -875,7 +876,6 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
-id show_tv
 id spacer
 id spinner
 id split_action_bar

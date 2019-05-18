@@ -21,13 +21,12 @@
         android:layout_weight="2"
         android:id="@+id/detail"
         android:name="com.example.matth.flohmarkt.DetailFragment"
-    ></fragment>
-
+        ></fragment>
     <fragment
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:id="@+id/recoments"
+        android:id="@+id/recoment"
         android:name="com.example.matth.flohmarkt.RecomentFragment"
         ></fragment>
 </LinearLayout>

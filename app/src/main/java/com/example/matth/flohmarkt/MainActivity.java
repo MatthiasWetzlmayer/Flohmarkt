@@ -110,16 +110,25 @@ static final SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     public void onMasterClicked(Article a) {
 
         if(getResources().getConfiguration().orientation==Configuration.ORIENTATION_PORTRAIT){
-
+            Intent i=new Intent(MainActivity.this,ShowArticle.class);
+            i.putExtra("id",a.id);
+            startActivity(i);
         }else{
             df.showDetail(a);
         }
 
     }
     public void onUpdateFinished(){
-        RecomentFragment rf= (RecomentFragment) getSupportFragmentManager().findFragmentById(R.id.recoments);
+        mf.onUpdateFinished();
+        RecomentFragment rf= (RecomentFragment) getSupportFragmentManager().findFragmentById(R.id.recoment);
         if(rf!=null){
             rf.setArticles();
+        }
+    }
+    public void onMasterChanged(){
+        RecomentFragment rf= (RecomentFragment) getSupportFragmentManager().findFragmentById(R.id.recoment);
+        if(rf!=null&&getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            rf.onMasterChanged();
         }
     }
 

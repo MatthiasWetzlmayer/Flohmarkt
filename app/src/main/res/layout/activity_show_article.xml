@@ -6,36 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ShowArticle">
-
-    <TextView
-        android:id="@+id/show_tv"
+    <fragment
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/call"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:text="Verkäufer anrufen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="E-Mail schreiben" />
-
-    <Button
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Auf Karte anzeigen" />
+        android:layout_height="match_parent"
+        android:id="@+id/ac_detail"
+        android:name="com.example.matth.flohmarkt.DetailFragment"></fragment>
 </LinearLayout>

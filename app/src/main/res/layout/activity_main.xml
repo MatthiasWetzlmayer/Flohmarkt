@@ -7,11 +7,11 @@
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="81dp">
 
-   <fragment
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/master"
-       android:name="com.example.matth.flohmarkt.MasterFragment"
-       ></fragment>
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/master"
+        android:name="com.example.matth.flohmarkt.MasterFragment"
+        ></fragment>
 
 </android.support.constraint.ConstraintLayout>
