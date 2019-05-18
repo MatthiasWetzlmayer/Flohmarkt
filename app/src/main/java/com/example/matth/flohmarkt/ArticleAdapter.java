@@ -41,4 +41,8 @@ LayoutInflater li;
         price.setText(a.price+"");
         return v;
     }
+
+    public ArrayList<Article> getList() {
+        return list;
+    }
 }

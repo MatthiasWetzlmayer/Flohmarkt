@@ -3,6 +3,7 @@ package com.example.matth.flohmarkt;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,54 +29,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MasterFragment.MasterClicked {
 //Uname u Psw für webserver:
 //WetzlmMt
 // 17154
 
 static ArrayList<Article> articles;
-static ArrayList<Article> yours;
-ListView lv;
-ListView y;
-static ArticleAdapter aa;
-static ArticleAdapter aYours;
 static SharedPreferences prefs;
+DetailFragment df;
+MasterFragment mf;
 static final SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        articles=new ArrayList<>();
-        yours=new ArrayList<>();
-        lv=findViewById(R.id.lv_All);
-        y=findViewById(R.id.lv_yours);
-        aa=new ArticleAdapter(this, articles);
-        aYours=new ArticleAdapter(this,yours);
-        lv.setAdapter(aa);
-        y.setAdapter(aYours);
+        df= (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail);
+        mf= (MasterFragment) getSupportFragmentManager().findFragmentById(R.id.master);
         prefs=PreferenceManager.getDefaultSharedPreferences(this);
 
-        update();
 
-       lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           @Override
-           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               Article a=articles.get(position);
-               Intent i=new Intent(MainActivity.this,ShowArticle.class);
-               i.putExtra("id",a.id);
-               startActivity(i);
-
-           }
-       });
-        y.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Article a=yours.get(position);
-                Intent i=new Intent(MainActivity.this,ShowArticle.class);
-                i.putExtra("id",a.id);
-                startActivity(i);
-            }
-        });
 
     }
 
@@ -127,14 +99,28 @@ static final SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     }
     public static void update(){
         DownloadTask dt=new DownloadTask();
-        dt.execute(articles);
+        //dt.execute(aa);
 
 
     }
+
+
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        update();
+    public void onMasterClicked(Article a) {
+
+        if(getResources().getConfiguration().orientation==Configuration.ORIENTATION_PORTRAIT){
+
+        }else{
+            df.showDetail(a);
+        }
+
     }
+    public void onUpdateFinished(){
+        RecomentFragment rf= (RecomentFragment) getSupportFragmentManager().findFragmentById(R.id.recoments);
+        if(rf!=null){
+            rf.setArticles();
+        }
+    }
+
 }

@@ -14,11 +14,12 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-public class DownloadTask extends AsyncTask<ArrayList<Article>, Integer, ArrayList<Article>> {
+public class DownloadTask extends AsyncTask<Object, Integer, ArticleAdapter> {
     @Override
-    protected ArrayList<Article> doInBackground(ArrayList<Article>... arrayLists) {
-        ArrayList<Article> articles=arrayLists[0];
-
+    protected ArticleAdapter doInBackground(Object... arrayLists) {
+        ArticleAdapter aa=(ArticleAdapter) arrayLists[0];
+        MainActivity ma= (MainActivity) arrayLists[1];
+        ArrayList<Article> articles=aa.getList();
 
         try {
             HttpURLConnection http= (HttpURLConnection) new URL("http:\\\\eaustria.no-ip.biz\\flohmarkt\\flohmarkt.php?operation=get").openConnection();
@@ -46,7 +47,6 @@ public class DownloadTask extends AsyncTask<ArrayList<Article>, Integer, ArrayLi
                     ex.printStackTrace();
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -57,20 +57,13 @@ public class DownloadTask extends AsyncTask<ArrayList<Article>, Integer, ArrayLi
 
 
 
-        return null;
+        return aa;
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Article> articles) {
-        MainActivity.yours.clear();
-        for(Article a:MainActivity.articles){
-            if(a.username.equals(MainActivity.prefs.getString("uname",""))){
-                MainActivity.yours.add(a);
-                a.setY(true);
-            }
-        }
-        MainActivity.aYours.notifyDataSetChanged();
-        MainActivity.aa.notifyDataSetChanged();
-        super.onPostExecute(articles);
+    protected void onPostExecute(ArticleAdapter aa) {
+        super.onPostExecute(aa);
+        aa.notifyDataSetChanged();
+
     }
 }
