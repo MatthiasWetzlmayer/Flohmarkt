@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
 
-   <FrameLayout
+   <fragment
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:id="@+id/master"></FrameLayout>
+       android:id="@+id/master"
+       android:name="com.example.matth.flohmarkt.MasterFragment"
+       ></fragment>
 
 </android.support.constraint.ConstraintLayout>
